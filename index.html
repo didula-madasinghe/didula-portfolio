@@ -187,39 +187,56 @@
             box-shadow:
                 0 0 15px var(--yellow);
         }
+            /* =====================================================
+             CUSTOM YELLOW DOT CURSOR
+            ===================================================== */
 
+html,
+body,
+a,
+button,
+input,
+textarea,
+select {
+    cursor: none !important;
+}
 
-        /* =====================================================
-           CURSOR GLOW
-        ===================================================== */
+.custom-cursor {
 
-        .cursor-glow {
+    position: fixed;
 
-            position: fixed;
+    width: 7px;
+    height: 7px;
 
-            width: 250px;
-            height: 250px;
+    background: #FFD60A;
 
-            border-radius: 50%;
+    border-radius: 50%;
 
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(255,214,10,.08),
-                    transparent 70%
-                );
+    pointer-events: none;
 
-            pointer-events: none;
+    transform:
+        translate(-50%, -50%);
 
-            transform:
-                translate(-50%, -50%);
+    z-index: 999999;
 
-            z-index: 0;
+    box-shadow:
+        0 0 5px rgba(255, 214, 10, 0.45),
+        0 0 10px rgba(255, 214, 10, 0.15);
 
-            transition:
-                left .15s ease,
-                top .15s ease;
-        }
+    transition:
+        width .15s ease,
+        height .15s ease,
+        box-shadow .15s ease;
+}
+
+.custom-cursor.hover {
+
+    width: 12px;
+    height: 12px;
+
+    box-shadow:
+        0 0 7px rgba(255, 214, 10, 0.5),
+        0 0 14px rgba(255, 214, 10, 0.18);
 
 
         /* =====================================================
@@ -2290,15 +2307,6 @@
 
 
     <!-- =====================================================
-         CURSOR GLOW
-    ====================================================== -->
-
-    <div class="cursor-glow"
-         id="cursorGlow">
-    </div>
-
-
-    <!-- =====================================================
          NAVIGATION
     ====================================================== -->
 
@@ -3615,29 +3623,99 @@
 
 
 
-        /* =====================================================
-           CURSOR GLOW
-        ===================================================== */
+/* =====================================================
+   CUSTOM YELLOW DOT CURSOR
+===================================================== */
 
-        const cursorGlow =
-            document.getElementById(
-                "cursorGlow"
-            );
+const customCursor =
+    document.createElement("div");
+
+customCursor.className =
+    "custom-cursor";
+
+document.body.appendChild(
+    customCursor
+);
+
+let mouseX =
+    window.innerWidth / 2;
+
+let mouseY =
+    window.innerHeight / 2;
+
+let cursorX =
+    mouseX;
+
+let cursorY =
+    mouseY;
 
 
-        document.addEventListener(
-            "mousemove",
-            event => {
+document.addEventListener(
+    "mousemove",
+    event => {
 
-                cursorGlow.style.left =
-                    event.clientX + "px";
+        mouseX =
+            event.clientX;
 
-                cursorGlow.style.top =
-                    event.clientY + "px";
+        mouseY =
+            event.clientY;
+
+    }
+);
+
+
+function animateCustomCursor() {
+
+    cursorX +=
+        (mouseX - cursorX) * 0.25;
+
+    cursorY +=
+        (mouseY - cursorY) * 0.25;
+
+    customCursor.style.left =
+        cursorX + "px";
+
+    customCursor.style.top =
+        cursorY + "px";
+
+    requestAnimationFrame(
+        animateCustomCursor
+    );
+}
+
+
+animateCustomCursor();
+
+
+document
+    .querySelectorAll(
+        "a, button, input, textarea, select"
+    )
+    .forEach(element => {
+
+        element.addEventListener(
+            "mouseenter",
+            () => {
+
+                customCursor.classList.add(
+                    "hover"
+                );
 
             }
         );
 
+        element.addEventListener(
+            "mouseleave",
+            () => {
+
+                customCursor.classList.remove(
+                    "hover"
+                );
+
+            }
+        );
+
+    });
 
 
         /* =====================================================
