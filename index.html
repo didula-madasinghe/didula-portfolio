@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +15,15 @@
     <title>Didula Madasinghe | Portfolio</title>
 
     <meta property="og:title" content="Didula Madasinghe | Portfolio">
-<meta property="og:description" content="Didula Madasinghe - Software Engineering Student Portfolio">
+    <meta property="og:description" content="Didula Madasinghe - Software Engineering Student Portfolio">
 
-<meta property="og:image" content="https://didula-madasinghe.github.io/didula-portfolio/image/whatsapp-preview.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/png">
+    <meta property="og:image" content="https://didula-madasinghe.github.io/didula-portfolio/image/whatsapp-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
 
-<meta property="og:url" content="https://didula-madasinghe.github.io/didula-portfolio/">
-<meta property="og:type" content="website">
+    <meta property="og:url" content="https://didula-madasinghe.github.io/didula-portfolio/">
+    <meta property="og:type" content="website">
 
     <link rel="icon" type="image/png" href="./image/favicon.png">
 
@@ -187,58 +188,349 @@
             box-shadow:
                 0 0 15px var(--yellow);
         }
-            /* =====================================================
-             CUSTOM YELLOW DOT CURSOR
-            ===================================================== */
 
-html,
-body,
-a,
-button,
-input,
-textarea,
-select {
-    cursor: none !important;
-}
 
-.custom-cursor {
+        /* =====================================================
+           CUSTOM YELLOW DOT CURSOR
+        ===================================================== */
 
-    position: fixed;
+        html,
+        body,
+        a,
+        button,
+        input,
+        textarea,
+        select {
+            cursor: none !important;
+        }
 
-    width: 7px;
-    height: 7px;
+        .custom-cursor {
 
-    background: #FFD60A;
+            position: fixed;
 
-    border-radius: 50%;
+            width: 7px;
+            height: 7px;
 
-    pointer-events: none;
+            background: #FFD60A;
 
-    transform:
-        translate(-50%, -50%);
+            border-radius: 50%;
 
-    z-index: 999999;
+            pointer-events: none;
 
-    box-shadow:
-        0 0 5px rgba(255, 214, 10, 0.45),
-        0 0 10px rgba(255, 214, 10, 0.15);
+            transform:
+                translate(-50%, -50%);
 
-    transition:
-        width .15s ease,
-        height .15s ease,
-        box-shadow .15s ease;
-}
+            z-index: 999999;
 
-.custom-cursor.hover {
+            box-shadow:
+                0 0 5px rgba(255, 214, 10, 0.45),
+                0 0 10px rgba(255, 214, 10, 0.15);
 
-    width: 12px;
-    height: 12px;
+            transition:
+                width .15s ease,
+                height .15s ease,
+                box-shadow .15s ease;
+        }
 
-    box-shadow:
-        0 0 7px rgba(255, 214, 10, 0.5),
-        0 0 14px rgba(255, 214, 10, 0.18);
+        .custom-cursor.hover {
 
-}
+            width: 12px;
+            height: 12px;
+
+            box-shadow:
+                0 0 7px rgba(255, 214, 10, 0.5),
+                0 0 14px rgba(255, 214, 10, 0.18);
+
+        }
+
+
+        /* =====================================================
+           PREMIUM INTRO / LOADING SCREEN
+           ADDED
+        ===================================================== */
+
+        #intro-loader {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            background: #050505;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            z-index: 9999999;
+
+            overflow: hidden;
+
+            transition:
+                opacity 0.9s ease,
+                visibility 0.9s ease;
+        }
+
+
+        #intro-loader::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,214,10,.12),
+                    transparent 70%
+                );
+
+            filter: blur(20px);
+
+            animation:
+                introGlow 4s ease-in-out infinite alternate;
+        }
+
+
+        @keyframes introGlow {
+
+            from {
+
+                transform:
+                    scale(.85);
+
+                opacity: .5;
+            }
+
+            to {
+
+                transform:
+                    scale(1.2);
+
+                opacity: 1;
+            }
+        }
+
+
+        .intro-logo {
+
+            font-family:
+                "Space Grotesk",
+                sans-serif;
+
+            font-size:
+                clamp(42px, 8vw, 72px);
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                -3px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            opacity: 0;
+
+            transform:
+                translateY(25px);
+
+            animation:
+                introLogo .9s .15s ease forwards;
+        }
+
+
+        .intro-logo span {
+
+            color:
+                var(--yellow);
+
+            text-shadow:
+                0 0 30px rgba(255,214,10,.35);
+        }
+
+
+        @keyframes introLogo {
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        .intro-subtitle {
+
+            margin-top:
+                12px;
+
+            color:
+                var(--gray);
+
+            font-size:
+                13px;
+
+            letter-spacing:
+                3px;
+
+            text-transform:
+                uppercase;
+
+            opacity:
+                0;
+
+            animation:
+                introSubtitle .8s .6s ease forwards;
+        }
+
+
+        @keyframes introSubtitle {
+
+            to {
+
+                opacity: 1;
+            }
+        }
+
+
+        .intro-loading {
+
+            width:
+                min(260px, 70%);
+
+            margin-top:
+                35px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            opacity:
+                0;
+
+            animation:
+                introLoading .7s .9s ease forwards;
+        }
+
+
+        @keyframes introLoading {
+
+            to {
+
+                opacity: 1;
+            }
+        }
+
+
+        .intro-loading-bar {
+
+            width:
+                100%;
+
+            height:
+                2px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border-radius:
+                10px;
+
+            overflow:
+                hidden;
+        }
+
+
+        .intro-loading-progress {
+
+            width:
+                0%;
+
+            height:
+                100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--yellow-dark),
+                    var(--yellow),
+                    var(--yellow-light)
+                );
+
+            box-shadow:
+                0 0 15px rgba(255,214,10,.7);
+
+            transition:
+                width .1s linear;
+        }
+
+
+        .intro-loading-info {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            margin-top:
+                10px;
+
+            font-size:
+                10px;
+
+            color:
+                rgba(255,255,255,.35);
+
+            letter-spacing:
+                1px;
+        }
+
+
+        #introPercentage {
+
+            color:
+                var(--yellow);
+        }
+
+
+        #intro-loader.loaded {
+
+            opacity:
+                0;
+
+            visibility:
+                hidden;
+
+            pointer-events:
+                none;
+        }
+
+
+        body.intro-active {
+
+            overflow:
+                hidden;
+        }
 
 
         /* =====================================================
@@ -2300,6 +2592,57 @@ select {
 
 
     <!-- =====================================================
+         PREMIUM INTRO LOADER
+         ADDED
+    ====================================================== -->
+
+    <div id="intro-loader">
+
+        <div class="intro-logo">
+
+            Didula<span>.</span>
+
+        </div>
+
+
+        <div class="intro-subtitle">
+
+            Software Engineering • AI
+
+        </div>
+
+
+        <div class="intro-loading">
+
+            <div class="intro-loading-bar">
+
+                <div
+                    class="intro-loading-progress"
+                    id="introProgress">
+                </div>
+
+            </div>
+
+
+            <div class="intro-loading-info">
+
+                <span>
+                    INITIALIZING PORTFOLIO
+                </span>
+
+                <span id="introPercentage">
+                    0%
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
          SCROLL PROGRESS
     ====================================================== -->
 
@@ -3625,99 +3968,100 @@ select {
 
 
 
-/* =====================================================
-   CUSTOM YELLOW DOT CURSOR
-===================================================== */
+        /* =====================================================
+           CUSTOM YELLOW DOT CURSOR
+        ===================================================== */
 
-const customCursor =
-    document.createElement("div");
+        const customCursor =
+            document.createElement("div");
 
-customCursor.className =
-    "custom-cursor";
+        customCursor.className =
+            "custom-cursor";
 
-document.body.appendChild(
-    customCursor
-);
+        document.body.appendChild(
+            customCursor
+        );
 
-let mouseX =
-    window.innerWidth / 2;
+        let mouseX =
+            window.innerWidth / 2;
 
-let mouseY =
-    window.innerHeight / 2;
+        let mouseY =
+            window.innerHeight / 2;
 
-let cursorX =
-    mouseX;
+        let cursorX =
+            mouseX;
 
-let cursorY =
-    mouseY;
-
-
-document.addEventListener(
-    "mousemove",
-    event => {
-
-        mouseX =
-            event.clientX;
-
-        mouseY =
-            event.clientY;
-
-    }
-);
+        let cursorY =
+            mouseY;
 
 
-function animateCustomCursor() {
+        document.addEventListener(
+            "mousemove",
+            event => {
 
-    cursorX +=
-        (mouseX - cursorX) * 0.25;
+                mouseX =
+                    event.clientX;
 
-    cursorY +=
-        (mouseY - cursorY) * 0.25;
-
-    customCursor.style.left =
-        cursorX + "px";
-
-    customCursor.style.top =
-        cursorY + "px";
-
-    requestAnimationFrame(
-        animateCustomCursor
-    );
-}
-
-
-animateCustomCursor();
-
-
-document
-    .querySelectorAll(
-        "a, button, input, textarea, select"
-    )
-    .forEach(element => {
-
-        element.addEventListener(
-            "mouseenter",
-            () => {
-
-                customCursor.classList.add(
-                    "hover"
-                );
+                mouseY =
+                    event.clientY;
 
             }
         );
 
-        element.addEventListener(
-            "mouseleave",
-            () => {
 
-                customCursor.classList.remove(
-                    "hover"
+        function animateCustomCursor() {
+
+            cursorX +=
+                (mouseX - cursorX) * 0.25;
+
+            cursorY +=
+                (mouseY - cursorY) * 0.25;
+
+            customCursor.style.left =
+                cursorX + "px";
+
+            customCursor.style.top =
+                cursorY + "px";
+
+            requestAnimationFrame(
+                animateCustomCursor
+            );
+        }
+
+
+        animateCustomCursor();
+
+
+        document
+            .querySelectorAll(
+                "a, button, input, textarea, select"
+            )
+            .forEach(element => {
+
+                element.addEventListener(
+                    "mouseenter",
+                    () => {
+
+                        customCursor.classList.add(
+                            "hover"
+                        );
+
+                    }
                 );
 
-            }
-        );
+                element.addEventListener(
+                    "mouseleave",
+                    () => {
 
-    });
+                        customCursor.classList.remove(
+                            "hover"
+                        );
+
+                    }
+                );
+
+            });
+
 
 
         /* =====================================================
@@ -3787,9 +4131,101 @@ document
         );
 
 
+
+        /* =====================================================
+           PREMIUM INTRO LOADER
+           ADDED
+        ===================================================== */
+
+        const introLoader =
+            document.getElementById(
+                "intro-loader"
+            );
+
+        const introProgress =
+            document.getElementById(
+                "introProgress"
+            );
+
+        const introPercentage =
+            document.getElementById(
+                "introPercentage"
+            );
+
+
+        document.body.classList.add(
+            "intro-active"
+        );
+
+
+        let introValue = 0;
+
+
+        const introInterval =
+            setInterval(
+                () => {
+
+                    introValue +=
+                        Math.floor(
+                            Math.random() * 4
+                        ) + 1;
+
+
+                    if (
+                        introValue >= 100
+                    ) {
+
+                        introValue = 100;
+
+                        clearInterval(
+                            introInterval
+                        );
+
+
+                        introProgress.style.width =
+                            "100%";
+
+
+                        introPercentage.textContent =
+                            "100%";
+
+
+                        setTimeout(
+                            () => {
+
+                                introLoader.classList.add(
+                                    "loaded"
+                                );
+
+
+                                document.body.classList.remove(
+                                    "intro-active"
+                                );
+
+                            },
+                            350
+                        );
+
+                    }
+
+
+                    introProgress.style.width =
+                        introValue + "%";
+
+
+                    introPercentage.textContent =
+                        introValue + "%";
+
+
+                },
+                45
+            );
+
+
     </script>
 
 
 </body>
 
 </html>
+```
